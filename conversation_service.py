@@ -18,7 +18,6 @@ def chat_stream(message: str):
     conversations.add_message("user", message)
     full_response = ""
     for chunk in ask_ai_stream(conversations.get_messages()):
-        print(repr(chunk))
         full_response += chunk
         yield chunk
 
