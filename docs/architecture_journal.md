@@ -197,3 +197,168 @@ Status: Completed
 - Add Groq streaming.
 - Add streaming fallback.
 - Improve streaming client testing.
+
+
+---
+
+# Date
+
+04 August 2026
+
+---
+
+# Sprint
+
+Sprint 2
+
+---
+
+# Feature
+
+Groq Streaming and Provider Fallback
+
+---
+
+# Client Requirement
+
+The application should continue responding even if the primary AI provider becomes unavailable due to rate limits.
+
+Streaming behavior should remain unchanged regardless of which provider generates the response.
+
+---
+
+# Business Understanding
+
+## Problem
+
+The chatbot depended entirely on Gemini.
+
+If Gemini exceeded its quota, streaming stopped and the user received an error.
+
+---
+
+## Requirements Discovered
+
+- Streaming should continue even when the primary provider fails.
+- Existing API endpoints should remain unchanged.
+- The frontend should not know which provider generated the response.
+- Both providers should expose the same contract.
+
+---
+
+# Architecture Discussion
+
+## Decision Needed
+
+Where should provider selection and fallback logic live?
+
+---
+
+## My Initial Thoughts
+
+Initially I considered changing multiple layers to support Groq streaming.
+
+After analysing responsibilities, I realized only the orchestration layer should know about provider selection.
+
+---
+
+# Final Decision
+
+Responsibilities were divided as follows:
+
+- Provider services communicate with their respective SDKs.
+- `service.py` owns provider routing and fallback.
+- `conversation_service.py` owns the conversation workflow.
+- `main.py` remains responsible only for HTTP.
+
+---
+
+# Implementation Summary
+
+Completed:
+
+- Refactored Groq to the native Chat Completions API.
+- Implemented Groq streaming.
+- Added Gemini → Groq streaming fallback.
+- Verified the streaming contract remained unchanged.
+- Verified the conversation workflow required no changes.
+
+---
+
+# Architecture Validation
+
+One of the strongest indicators that the architecture was correct was that introducing a second provider required changes only inside:
+
+- `groq_service.py`
+- `service.py`
+
+No changes were required in:
+
+- `main.py`
+- `conversation_service.py`
+
+This confirmed that responsibilities had been separated correctly.
+
+---
+
+# Lessons Learned
+
+- Stable contracts reduce future development effort.
+- Good architecture minimizes the number of files that change.
+- Provider implementations should hide SDK-specific details.
+- Responsibilities should be identified before implementation begins.
+
+---
+
+# Sprint Backlog
+
+## Story 1
+
+Title: Native Groq Integration
+
+Status: Completed
+
+---
+
+## Story 2
+
+Title: Groq Streaming
+
+Status: Completed
+
+---
+
+## Story 3
+
+Title: Streaming Provider Fallback
+
+Status: Completed
+
+---
+
+## Story 4
+
+Title: Validate Provider Contract
+
+Status: Completed
+
+---
+
+# Sprint Summary
+
+## Completed
+
+- Native Groq SDK integration.
+- Groq Chat Completions.
+- Groq Streaming.
+- Streaming fallback.
+- End-to-end provider validation.
+
+---
+
+## Future Improvements
+
+- Structured logging.
+- Retry policies.
+- Additional provider support.
+- Provider health monitoring.
