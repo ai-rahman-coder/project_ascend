@@ -18,3 +18,21 @@ def ask_gemini(prompt: list):
             "totalTokenCount": response.usage_metadata.total_token_count
         },
     }
+
+
+def ask_gemini_stream(messages: list):
+
+    response = client.models.generate_content_stream(
+        model="gemini-3.6-flash",
+        contents=messages
+        )
+
+    for chunk in response:
+        if chunk.text:
+            yield chunk.text
+
+
+
+# if __name__ == "__main__":
+#     for chunk in ask_gemini_stream(["Hello, how are you?"]):
+#         print("chunk", chunk, end="\n", flush=True)
