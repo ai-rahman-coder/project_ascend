@@ -1,10 +1,15 @@
+import logging
+
 from conversation import Conversation
 from ai_service.service import ask_ai, ask_ai_stream
+
+logger = logging.getLogger(__name__)
 
 conversations = Conversation()
 
 def chat(message: str):
     conversations.add_message("user", message)
+    logger.info("Processing chat request")
     response = ask_ai(conversations.get_messages())
     conversations.add_message("model", response["text"])
     return {
@@ -16,6 +21,7 @@ def chat(message: str):
 
 def chat_stream(message: str):
     conversations.add_message("user", message)
+    logger.info("Processing streaming chat request")
     full_response = ""
     for chunk in ask_ai_stream(conversations.get_messages()):
         full_response += chunk

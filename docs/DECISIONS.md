@@ -213,3 +213,37 @@ No changes were required in:
 ### Conclusion
 
 This validated that responsibilities were correctly separated and the architecture scaled as intended.
+
+
+---
+
+# Decision 008
+
+## Title
+
+Centralize application logging
+
+### Context
+
+Logging was beginning to appear across multiple modules.
+
+Without a common configuration, formatting and behavior would become inconsistent.
+
+### Decision
+
+Introduce a centralized logging configuration and allow every module to obtain its own logger using:
+
+```python
+logger = logging.getLogger(__name__)
+```
+
+### Reason
+
+- Consistent log format.
+- Single logging configuration.
+- Module-specific log names.
+- Easier future migration to file logging or external logging systems.
+
+### Result
+
+Every module now produces consistent logs while remaining independently identifiable.

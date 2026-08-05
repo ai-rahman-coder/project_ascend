@@ -59,3 +59,35 @@ During this sprint I noticed that instead of wondering "what else will break?", 
 - Implemented Groq streaming.
 - Added Gemini → Groq streaming fallback.
 - Verified that the provider abstraction worked without modifying the API layer or conversation workflow.
+
+
+---
+
+## Sprint 3
+
+### What changed in my thinking
+
+- I learned that logging is part of system observability, not debugging.
+- I understood how Python's logging hierarchy works through loggers, handlers and formatters.
+- I realized logging should describe business events instead of printing arbitrary values.
+- I became more conscious about where logging responsibilities belong.
+
+### Biggest Challenges
+
+- Understanding the difference between `basicConfig()` and `dictConfig()`.
+- Understanding why Uvicorn logging changed after introducing my own logging configuration.
+- Deciding what should and should not be logged.
+
+### Biggest Takeaway
+
+Logging is another architectural layer.
+
+A good log should explain **what the application is doing**, not simply **what the code executed**.
+
+### Engineering Milestones
+
+- Introduced centralized logging configuration.
+- Added structured log formatting.
+- Added application logs throughout the conversation workflow.
+- Logged provider selection and provider fallback.
+- Removed `print()` based debugging.

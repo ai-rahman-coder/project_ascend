@@ -362,3 +362,145 @@ Status: Completed
 - Retry policies.
 - Additional provider support.
 - Provider health monitoring.
+
+
+---
+
+# Date
+
+05 August 2026
+
+---
+
+# Sprint
+
+Sprint 3
+
+---
+
+# Feature
+
+Centralized Application Logging
+
+---
+
+# Client Requirement
+
+The development team needs consistent logs to understand application behavior, troubleshoot issues, and trace request flow across the system.
+
+---
+
+# Business Understanding
+
+## Problem
+
+The application relied on scattered `print()` statements.
+
+Debugging became inconsistent and there was no standard way to understand request execution.
+
+---
+
+# Requirements Discovered
+
+- Every module should produce consistent logs.
+- Logging configuration should exist in one place.
+- Business events should be logged instead of arbitrary variables.
+- Future logging destinations should be configurable without changing application code.
+
+---
+
+# Architecture Discussion
+
+## Decision Needed
+
+Where should logging be configured?
+
+---
+
+## Final Decision
+
+Create one centralized logging configuration.
+
+Each module obtains its own logger using:
+
+```python
+logging.getLogger(__name__)
+```
+
+---
+
+# Implementation Summary
+
+Completed:
+
+- Introduced centralized logging configuration.
+- Added structured log formatting.
+- Added logging to conversation workflow.
+- Added provider logging.
+- Added fallback logging.
+- Removed print-based debugging.
+
+---
+
+# Lessons Learned
+
+- Logging is part of observability.
+- Modules should own their own logger.
+- Logging configuration should exist in one place.
+- Good logs describe business events instead of implementation details.
+
+---
+
+# Sprint Backlog
+
+## Story 1
+
+Title: Centralized Logging Configuration
+
+Status: Completed
+
+---
+
+## Story 2
+
+Title: Application Logging
+
+Status: Completed
+
+---
+
+## Story 3
+
+Title: Provider Logging
+
+Status: Completed
+
+---
+
+## Story 4
+
+Title: Fallback Logging
+
+Status: Completed
+
+---
+
+# Sprint Summary
+
+## Completed
+
+- Centralized logging.
+- Structured log formatting.
+- Provider logging.
+- Conversation workflow logging.
+- Fallback logging.
+
+---
+
+## Future Improvements
+
+- File logging.
+- Log rotation.
+- Correlation IDs.
+- Request IDs.
+- Structured JSON logging.
