@@ -1,3 +1,5 @@
+import logging_config.logger
+
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from schemas import ChatRequest, ChatResponse

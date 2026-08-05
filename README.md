@@ -11,7 +11,7 @@ The goal is not simply to build an AI chatbot, but to learn professional softwar
 - System Design
 - Git Workflow
 - Engineering Documentation
-- Design Decisions
+- Engineering Decision Making
 - Clean Code
 - Product Thinking
 
@@ -36,8 +36,8 @@ The goal is not simply to build an AI chatbot, but to learn professional softwar
 - Streaming Endpoint
 - Gemini Streaming
 - Conversation Persistence
-- Architecture Decision Record (ADR)
 - Conversation Service Layer
+- Streaming Architecture
 
 ### Sprint 2
 
@@ -47,11 +47,19 @@ The goal is not simply to build an AI chatbot, but to learn professional softwar
 - Gemini → Groq Streaming Fallback
 - Unified Provider Interface
 
+### Sprint 3
+
+- Centralized Logging Configuration
+- Structured Application Logging
+- Conversation Workflow Logging
+- Provider Activity Logging
+- Provider Fallback Logging
+
 ---
 
 ## Current Architecture
 
-```
+```text
 Client
     │
     ▼
@@ -71,17 +79,23 @@ gemini_service.py groq_service.py
 
 ## Documentation
 
-See the `/docs` folder for:
+The `docs/` directory contains:
 
-- Architecture Journal
-- Sprint Backlog
-- Sprint Reviews
-- Architecture Decision Records
+- `ROADMAP.md` – Overall learning roadmap
+- `JOURNEY.md` – Engineering growth throughout Project Ascend
+- `architecture_journal.md` – Architectural analysis for each sprint
+- `engineering_decisions.md` – Important engineering decisions
+- `architecture/adr/` – Architecture Decision Records (ADRs)
+- `user_guide/` – User documentation (planned)
 
 ---
 
-## Status
+## Current Status
 
-Current Sprint:
+- ✅ Sprint 1 Complete
+- ✅ Sprint 2 Complete
+- ✅ Sprint 3 Complete
 
-Sprint 2 Complete
+**Current Focus**
+
+Sprint 4 – Exception Handling & Error Management
