@@ -1,15 +1,50 @@
 # Project Ascend Roadmap
 
-## Sprint 1
+## Completed
 
-- ✅ Streaming AI Responses
+### Sprint 1
 
-## Planned
+- ✅ Gemini Streaming
+- ✅ Streaming Endpoint
+- ✅ Conversation Persistence
+- ✅ Conversation Service Layer
+- ✅ Streaming Architecture
 
-- Groq Streaming
-- Streaming Fallback
-- Provider Abstraction Improvements
+### Sprint 2
+
+- ✅ Native Groq Integration
+- ✅ Groq Streaming
+- ✅ Streaming Provider Fallback
+- ✅ Unified Provider Contract
+
+---
+
+## Upcoming
+
+### Sprint 3
+
+- Provider reliability improvements
+- Logging
+- Error handling improvements
+
+### Sprint 4
+
+- Frontend integration
+
+### Sprint 5
+
+- AI architecture improvements
+- Prompt engineering
+- Context management
+
+### Future
+
+- Authentication
+- Database integration
+- Deployment
+- Docker
+- CI/CD
+- AWS
 - System Design
-- AI Architecture
 - Product Engineering
 - Business Thinking
