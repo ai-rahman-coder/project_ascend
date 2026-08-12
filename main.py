@@ -5,7 +5,13 @@ from fastapi.responses import StreamingResponse
 from schemas import ChatRequest, ChatResponse
 from conversation_service import chat as chat_service, chat_stream as chat_stream_service
 
+from exceptions.ai_exceptions import ProviderUnavailableError, UnauthorizedAccessError
+from exceptions.handlers import provider_unavailable_handler, unauthorized_access_handler
+
 app = FastAPI()
+
+app.add_exception_handler(ProviderUnavailableError, provider_unavailable_handler)
+app.add_exception_handler(UnauthorizedAccessError, unauthorized_access_handler)
 
 @app.post("/chat", response_model=ChatResponse)
 def chat(data: ChatRequest):

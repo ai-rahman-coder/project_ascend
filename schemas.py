@@ -6,10 +6,15 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     response: str
     model: str
-    usage: dict
+    usage: Usage
 
 
 class Usage(BaseModel):
     promptTokenCount: int
     candidatesTokenCount: int
     totalTokenCount: int
+
+
+class ErrorResponse(BaseModel):
+    error: str
+    message: str
