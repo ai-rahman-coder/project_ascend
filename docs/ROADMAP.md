@@ -1,109 +1,40 @@
-# Project Ascend Roadmap
+Sprint 1 — Streaming
+✅ Gemini Streaming
+✅ Streaming Endpoint
+✅ Conversation Persistence
+✅ Conversation Service Layer
 
-## Completed
+Sprint 2 — Provider Reliability
+✅ Native Groq Integration
+✅ Groq Streaming
+✅ Gemini → Groq Fallback
+✅ Unified Provider Contract
 
-### Sprint 1
+Sprint 3 — Observability
+✅ Centralized Logging
+✅ Structured Log Formatting
+✅ Application Logging
+✅ Provider Logging
+✅ Fallback Logging
 
-- ✅ Gemini Streaming
-- ✅ Streaming Endpoint
-- ✅ Conversation Persistence
-- ✅ Conversation Service Layer
-- ✅ Streaming Architecture
+Sprint 4 — Error Handling
+⬜ Global Exception Handler
+⬜ Standardized Error Responses
+⬜ Test provider failure scenarios
 
-### Sprint 2
+Sprint 5 — Frontend
+⬜ Frontend integration
 
-- ✅ Native Groq Integration
-- ✅ Groq Streaming
-- ✅ Streaming Provider Fallback
-- ✅ Unified Provider Contract
-# Project Ascend Roadmap
+Sprint 6 — AI Architecture
+⬜ Prompt Engineering
+⬜ Context Management
 
-## Completed
-
-### Sprint 1
-
-- ✅ Gemini Streaming
-- ✅ Streaming Endpoint
-- ✅ Conversation Persistence
-- ✅ Conversation Service Layer
-- ✅ Streaming Architecture
-
-### Sprint 2
-
-- ✅ Native Groq Integration
-- ✅ Groq Streaming
-- ✅ Streaming Provider Fallback
-- ✅ Unified Provider Contract
-
-### Sprint 3
-
-- ✅ Centralized Logging
-- ✅ Structured Log Formatting
-- ✅ Application-Level Logging
-- ✅ Provider Activity Logging
-- ✅ Fallback Logging
-- ✅ Improved Observability
-
----
-
-## Upcoming
-
-### Sprint 4
-
-- Exception Handling
-- Custom Exceptions
-- Global Exception Handler
-- Standardized Error Responses
-
-### Sprint 5
-
-- Frontend Integration
-
-### Sprint 6
-
-- AI Architecture Improvements
-- Prompt Engineering
-- Context Management
-
-### Future
-
-- Authentication
-- Database Integration
-- Deployment
-- Docker
-- CI/CD
-- AWS
-- System Design
-- Product Engineering
-- Business Thinking
----
-
-## Upcoming
-
-### Sprint 3
-
-- Provider reliability improvements
-- Logging
-- Error handling improvements
-
-### Sprint 4
-
-- Frontend integration
-
-### Sprint 5
-
-- AI architecture improvements
-- Prompt engineering
-- Context management
-
-### Future
-
-- Authentication
-- Database integration
-- Deployment
-- Docker
-- CI/CD
-- AWS
-- System Design
-- Product Engineering
-- Business Thinking
+Future
+⬜ Authentication
+⬜ Database
+⬜ Docker
+⬜ CI/CD
+⬜ AWS
+⬜ System Design
+⬜ Product Engineering
+⬜ Business Thinking
