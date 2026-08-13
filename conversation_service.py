@@ -5,7 +5,7 @@ from ai_service.service import ask_ai, ask_ai_stream
 
 logger = logging.getLogger(__name__)
 
-conversations = Conversation()
+conversations = Conversation("user_2")
 
 def chat(message: str):
     conversations.add_message("user", message)
