@@ -1,25 +1,24 @@
-import json
+import database
 
 
 class Conversation:
 
-    def __init__(self):
-        self.messages = self.load_history()
-
     def add_message(self, role, content):
-        self.messages.append({"role": role, "parts": [{"text": content}]})
-        self.save_history()
+        database.add_message(role, content)
 
     def get_messages(self):
-        return self.messages
+        rows = database.get_messages()
 
-    def load_history(self):
-        try:
-            with open("conversation.json", "r") as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return []
+        messages = []
 
-    def save_history(self):
-        with open("conversation.json", "w") as f:
-            json.dump(self.messages, f, indent=4)
+        for role, content in rows:
+            messages.append({
+                "role": role,
+                "parts": [
+                    {
+                        "text": content
+                    }
+                ]
+            })
+            
+        return messages
