@@ -1,8 +1,9 @@
 import sqlite3
 
+DATABASE_PATH = "ascend.db"
 
 def get_connection():
-    return sqlite3.connect("ascend.db")
+    return sqlite3.connect(DATABASE_PATH)
 
 
 def initialize_database():
