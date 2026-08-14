@@ -5,9 +5,8 @@ from ai_service.service import ask_ai, ask_ai_stream
 
 logger = logging.getLogger(__name__)
 
-conversations = Conversation("user_2")
-
-def chat(message: str):
+def chat(user_id: str, message: str):
+    conversations = Conversation(user_id)
     conversations.add_message("user", message)
     logger.info("Processing chat request")
     response = ask_ai(conversations.get_messages())
@@ -19,7 +18,8 @@ def chat(message: str):
             }
 
 
-def chat_stream(message: str):
+def chat_stream(user_id: str, message: str):
+    conversations = Conversation(user_id)
     conversations.add_message("user", message)
     logger.info("Processing streaming chat request")
     full_response = ""

@@ -24,7 +24,8 @@ chatForm.addEventListener("submit", async function (event) {
         const response = await fetch("http://127.0.0.1:8000/chat/stream", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer user_1"
             },
             body: JSON.stringify({
                 message: message
