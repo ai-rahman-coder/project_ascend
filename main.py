@@ -3,7 +3,8 @@ import logging_config.logger
 import database
 database.initialize_database()
 
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
+from auth import get_current_user
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from schemas import ChatRequest, ChatResponse
@@ -26,9 +27,15 @@ app.add_exception_handler(ProviderUnavailableError, provider_unavailable_handler
 app.add_exception_handler(UnauthorizedAccessError, unauthorized_access_handler)
 
 @app.post("/chat", response_model=ChatResponse)
-def chat(data: ChatRequest):
-    return chat_service(data.message)
+def chat(
+        data: ChatRequest,
+        user_id: str = Depends(get_current_user)
+    ):
+    return chat_service(user_id, data.message)
 
 @app.post("/chat/stream", response_class=StreamingResponse)
-def chat_stream(data: ChatRequest):
-    return StreamingResponse(chat_stream_service(data.message), media_type="text/plain")
+def chat_stream(
+        data: ChatRequest,
+        user_id: str = Depends(get_current_user)
+    ):
+    return StreamingResponse(chat_stream_service(user_id, data.message), media_type="text/plain")
