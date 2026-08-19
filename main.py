@@ -1,7 +1,8 @@
 import logging_config.logger
 
 import database
-database.initialize_database()
+
+from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI
 from auth import get_current_user
@@ -13,7 +14,13 @@ from conversation_service import chat as chat_service, chat_stream as chat_strea
 from exceptions.ai_exceptions import ProviderUnavailableError, UnauthorizedAccessError
 from exceptions.handlers import provider_unavailable_handler, unauthorized_access_handler
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):    
+    database.initialize_database()
+
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
