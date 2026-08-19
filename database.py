@@ -1,52 +1,54 @@
-import sqlite3
+import os
+from sqlalchemy import create_engine, Column, Integer, Text
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-DATABASE_PATH = "ascend.db"
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
 
-def get_connection():
-    return sqlite3.connect(DATABASE_PATH)
+DATABASE_URL = (
+    f"postgresql+psycopg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+)
+
+engine = create_engine(DATABASE_URL)
+
+SessionLocal = sessionmaker(bind=engine)
+
+Base = declarative_base()
+
+class Message(Base):
+    __tablename__ = "messages"
+    
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Text, nullable=False)
+    role = Column(Text, nullable=False)
+    content = Column(Text, nullable=False)
 
 
 def initialize_database():
-    connection = get_connection()
-
-    connection.execute("""
-        CREATE TABLE IF NOT EXISTS messages (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id TEXT NOT NULL,
-            role TEXT NOT NULL,
-            content TEXT NOT NULL
-        )
-    """)
-
-    connection.commit()
-    connection.close()
+    Base.metadata.create_all(engine)
 
 
 def add_message(user_id, role, content):
-    connection = get_connection()
-
-    connection.execute(
-        """INSERT INTO messages (user_id, role, content) VALUES (?, ?, ?)""",
-        (user_id, role, content)
-    )
-
-    connection.commit()
-    connection.close()
-
-
+    with SessionLocal() as session:
+        message = Message(
+            user_id = user_id,
+            role = role,
+            content = content
+        )
+        
+        session.add(message)
+        session.commit()
+ 
 def get_messages(user_id):
-    connection = get_connection()
-
-    cursor = connection.execute("""
-        SELECT role, content
-        FROM messages
-        WHERE user_id = ?
-        ORDER BY id""",
-        (user_id,)
-    )
-
-    rows = cursor.fetchall()
-
-    connection.close()
-
-    return rows
+    with SessionLocal() as session:
+        messages = (
+            session.query(Message)
+            .filter(Message.user_id == user_id)
+            .order_by(Message.id)
+            .all()
+        )
+        
+        return [(message.role, message.content) for message in messages]
