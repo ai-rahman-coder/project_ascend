@@ -21,6 +21,12 @@ def cosine_similarity(vector_a, vector_b):
 if __name__ == "__main__":
     vector_a = [1, 2, 3]
     vector_b = [1, 2, 3]
+    # try these examples to experiment
+    # vector_a = [1, 2, 3]
+    # vector_b = [1, 2, 4]
+    
+    # vector_a = [1, 0]
+    # vector_b = [0, 1]
 
     similarity = cosine_similarity(vector_a, vector_b)
 
