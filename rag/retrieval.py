@@ -31,7 +31,14 @@ def search_similar_chunks(question, limit = 3):
     with SessionLocal() as session:
         results = session.execute(query, params=params)
         
-        return results.fetchall()
+        return [
+            {
+                "content": row.content,
+                "metadata": row.metadata_info,
+                "similarity": row.similarity
+            }
+            for row in results
+        ]
         
         
 if __name__ == "__main__":
@@ -41,6 +48,6 @@ if __name__ == "__main__":
 
     for result in results:
         print("\n--- Result ---")
-        # print("Similarity:", result.similarity)
-        # print("Content:", result.content)
-        print("result", result, "\n")
+        print("Similarity:", result["similarity"])
+        print("Content:", result["content"])
+        print("Metadata:", result["metadata"])
