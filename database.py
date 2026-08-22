@@ -1,6 +1,9 @@
 import os
-from sqlalchemy import create_engine, Column, Integer, Text
+from sqlalchemy import create_engine, Column, Integer, Text, text
 from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.dialects.postgresql import JSONB
+from pgvector.sqlalchemy import Vector
+from config import DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD
 
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
@@ -25,9 +28,20 @@ class Message(Base):
     user_id = Column(Text, nullable=False)
     role = Column(Text, nullable=False)
     content = Column(Text, nullable=False)
+    
+
+class DocumentChunks(Base):
+    __tablename__ = "document_chunks"
+    
+    id = Column(Integer, primary_key=True)
+    content = Column(Text, nullable=False)
+    metadata_info = Column(JSONB, nullable=True)
+    embedding = Column(Vector(768), nullable=False)
 
 
 def initialize_database():
+    with engine.begin() as connection:
+        connection.execute(text("CREATE EXTENSION IF NOT EXISTS vector"))
     Base.metadata.create_all(engine)
 
 

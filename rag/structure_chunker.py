@@ -71,8 +71,10 @@ if __name__ == "__main__":
     document = load_document("documents/architecture.md")
 
     chunks = structure_aware_chunks(document)
-
-    for index, chunk in enumerate(chunks):
-        print(f"\n--- Chunk {index} ---")
-        print("Text:", chunk["text"])
-        print("Metadata:", chunk["metadata"])
+    print(type(chunks))
+    for chunk in chunks:
+        print(chunk, "\n")
+    # for index, chunk in enumerate(chunks):
+    #     print(f"\n--- Chunk {index} ---")
+    #     print("Text:", chunk["text"])
+    #     print("Metadata:", chunk["metadata"])

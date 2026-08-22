@@ -16,11 +16,13 @@ services:
     image: redis:7
   
   postgres:
-    image: postgres:17
+    image: pgvector/pgvector:pg17
     environment:
       POSTGRES_DB: ascend
       POSTGRES_USER: ascend_user
       POSTGRES_PASSWORD: ascend_password
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
