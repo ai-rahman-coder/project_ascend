@@ -1,0 +1,14 @@
+Project Ascend is an AI application built with FastAPI.
+
+The application uses PostgreSQL as its persistent database.
+SQLAlchemy is used to interact with PostgreSQL.
+
+Docker is used to containerize the application and its dependencies.
+Docker Compose manages the API, PostgreSQL, and pgAdmin containers.
+
+The application uses an AI provider to communicate with a large language model.
+The language model generates responses based on the user's request.
+
+RAG will allow the application to retrieve relevant information from external documents.
+Embeddings will be used to represent document chunks as vectors.
+The retrieved chunks will be provided to the language model as context.
