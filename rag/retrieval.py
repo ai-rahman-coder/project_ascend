@@ -2,7 +2,7 @@ import ollama
 from sqlalchemy import text
 from database import SessionLocal
 
-ollama_client = ollama.Client(host="http://localhost:11434")
+ollama_client = ollama.Client(host="http://host.docker.internal:11434")
 
 def create_embedding(text):
     response = ollama_client.embed(
